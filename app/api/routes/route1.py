@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends
-from app.api.models.model1 import Model1
+from app.api.models.models import Base
 
 router = APIRouter()
 
 
-@router.post("/", response_model=Model1)
-async def create_item(item: Model1):
-    # Implement your logic here
-    return item
+# @router.post("/", response_model=Base)
+# async def create_item(item: Base): # type: ignore
+#     # Implement your logic here
+#     return item
