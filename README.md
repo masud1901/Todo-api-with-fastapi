@@ -1,2 +1,2 @@
-Going to make a simole Todo app but in a more organised way. 
+Going to make a simple Todo app but in a more organized way. 
 
