@@ -9,6 +9,11 @@ todos = [
     ("Buy groceries", "Get milk, eggs, and bread", 2, False),
     ("Finish report", "Complete quarterly report", 1, False),
     ("Clean the house", "Vacuum and dust the living room", 3, True),
+    ("Pay bills", "Pay electricity, internet, and phone bills", 1, False),
+    ("Cook dinner", "Cook dinner for the family", 2, False),
+    ("Wash the car", "Wash the car", 1, False),
+    ("Take out the trash", "Take out the trash", 3, False),
+    ("Mow the lawn", "Mow the lawn", 2, False),
 ]
 
 c.executemany(

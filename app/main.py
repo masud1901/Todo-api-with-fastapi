@@ -15,6 +15,6 @@ app.include_router(api_router)
 models.Base.metadata.create_all(bind=engine)
 
 
-# @app.get("/")
-# def read_root():
-#     return {"message": "Welcome to the API"}
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to the API"}
