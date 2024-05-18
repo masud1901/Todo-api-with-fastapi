@@ -1,17 +1,10 @@
-from typing import Annotated
-from fastapi import APIRouter, Depends, HTTPException, Path
+from fastapi import APIRouter, HTTPException, Path
 from pydantic import BaseModel, Field
-from sqlalchemy.orm import Session
-from app.api.db.sqlite_database import get_db
+from app.api.db.sqlite_database import db_dependencies
 from starlette import status
-
-# from app.api.models.models import Base
 from app.api.models.models import Todos
 
 router = APIRouter()
-
-
-db_dependencies = Annotated[Session, Depends(get_db)]
 
 
 @router.get("/", status_code=status.HTTP_200_OK)

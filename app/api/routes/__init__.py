@@ -1,14 +1,26 @@
 from fastapi import APIRouter
 
-from .sqlite_route import router as route1_router
+from .sqlite_route import router as crudRouter
 
-# from .route2 import router as route2_router
+from .auth import router as authRouter
+from .token import router as tokenRouter
 
 router = APIRouter()
 
 router.include_router(
-    route1_router,
+    crudRouter,
     prefix="/sqlite",
     tags=["sqlite-endpoint"],
 )
-# router.include_router(route2_router, prefix="/route2", tags=["Route 2"])
+
+router.include_router(
+    authRouter,
+    prefix="/auth",
+    tags=["auth-endpoint"],
+)
+
+router.include_router(
+    tokenRouter,
+    prefix="/token",
+    tags=["token-endpoint"],
+)
