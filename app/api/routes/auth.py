@@ -23,8 +23,6 @@ class CreateUserRequest(BaseModel):
     last_name: str
     password: str
     role: str
-    
-
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED)
