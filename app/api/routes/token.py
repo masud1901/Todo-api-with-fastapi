@@ -41,24 +41,15 @@ def authenticate_user(username: str, password: str, db):
 
 
 def create_access_token(
-    username: str, user_id: str, token_expiration_time: timedelta
+    username: str,
+    user_id: str,
+    user_role: str,
+    token_expiration_time: timedelta,
 ) -> str:
-    """
-    Creates an access token (JWT) for a user with a specified expiration time.
-
-    Args:
-        username (str): The username of the user.
-        user_id (str): The unique identifier of the user.
-        token_expiration_time (timedelta): The time duration after which
-        the token will expire.
-
-    Returns:
-        str: The encoded access token.
-    """
-    # Set the payload for the token
     payload = {
-        "sub": username,  # Subject (the user's username)
-        "id": user_id,  # User's unique identifier
+        "user": username,
+        "id": user_id,
+        "role": user_role,
     }
 
     # Calculate the expiration time for the token
@@ -78,14 +69,15 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_bearer)]):
         payload = jwt.decode(
             token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM]
         )
-        username: str = payload.get("sub")
+        username: str = payload.get("user")
         user_id: int = payload.get("id")
+        user_role: str = payload.get("role")
         if username is None or user_id is None:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Could not validate user.",
             )
-        return {"username": username, "id": user_id}
+        return {"username": username, "id": user_id, "user_role": user_role}
     except JWTError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -108,6 +100,7 @@ async def login_for_access_token(
     token = create_access_token(
         username=user.username,
         user_id=user.id,
+        user_role=user.role,
         token_expiration_time=timedelta(minutes=20),
     )
 
