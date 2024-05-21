@@ -3,7 +3,7 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     # Configure environment variables here
-    DATABASE_URL: str = "sqlite:///./sqlite3.db"
+    DATABASE_URL: str
     SECRET_KEY: str
     ALGORITHM: str
 

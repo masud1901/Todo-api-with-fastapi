@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from .sqlite_route import router as crudRouter
+from .crud import router as crudRouter
 
 from .auth import router as authRouter
 from .token import router as tokenRouter
