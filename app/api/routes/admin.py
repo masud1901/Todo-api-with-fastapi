@@ -21,7 +21,7 @@ async def read_all_todos(db: db_dependencies, user: user_dependency):
     if user.get("user_role") != "admin":
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail=" User not Authorized",
+            detail="User not Authorized",
         )
     return db.query(Todos).all()
 

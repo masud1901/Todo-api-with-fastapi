@@ -5,15 +5,9 @@ from passlib.context import CryptContext
 from app.api.db.sqlite_database import db_dependencies
 from starlette import status
 
-
 router = APIRouter()
 
 pwd_context = CryptContext(schemes=["argon2"])
-
-
-@router.get("/")
-async def read_all(db: db_dependencies):
-    return db.query(Users).all()
 
 
 class CreateUserRequest(BaseModel):
